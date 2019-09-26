@@ -12,7 +12,7 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   nami_initialize apache php mysql-client mediawiki
   sed -i 's/^\$wgDefaultSkin.*$//g' /bitnami/mediawiki/LocalSettings.php
   sed -i 's/^wfLoadSkin.*$//g' /bitnami/mediawiki/LocalSettings.php
-  sed -i 's/^wgMetaNamespace.*$//g' /bitnami/mediawiki/LocalSettings.php
+  sed -i 's/^\$wgMetaNamespace.*$//g' /bitnami/mediawiki/LocalSettings.php
   echo >> /bitnami/mediawiki/LocalSettings.php
   echo "# wiki.dave.io additional config" >> /bitnami/mediawiki/LocalSettings.php
   echo >> /bitnami/mediawiki/LocalSettings.php
