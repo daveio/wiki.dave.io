@@ -1,0 +1,169 @@
+//
+// Variables used by the Chameleon skin
+//
+// This file is part of the MediaWiki skin Chameleon.
+// @copyright 2013 - 2019, Stephan Gambke, GNU General Public License, version 3 (or any later version)
+//
+// @since 2.0
+
+
+// Variable names should follow the `$component-state-property-size` formula
+// (leaving out inapplicable parts) for consistent naming.
+// Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$cmln-collapse-point: 1105px !default;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	cmln: $cmln-collapse-point,
+	xl: 1200px
+);
+
+
+// Global textual link colors.
+$cmln-link-format: $link-color none darken($link-color, 15%) underline !default;
+
+$cmln-link-formats: () !default;
+$cmln-link-formats: map_merge((
+	new: theme-color("danger") none darken(theme-color("danger"), 15%) underline,
+	stub: $cmln-link-format,
+	extiw: $cmln-link-format,
+	external: $cmln-link-format,
+), $cmln-link-formats);
+
+// PersonalTools
+$cmln-personal-tools-item-margin: map_get( $spacers, 4 ) !default;
+
+$cmln-personal-tools-font-size: $font-size-sm !default;
+$cmln-personal-tools-item-margin: map_get( $spacers, 4 ) !default;
+
+$cmln-personal-tools-link: $cmln-link-format !default;
+$cmln-personal-tools-link-new: map_get( $cmln-link-formats, "new" ) !default;
+
+// PageTools
+$cmln-page-tools-font-size: $font-size-sm !default;
+$cmln-page-tools-item-margin: map_get( $spacers, 4 ) !default;
+
+$cmln-page-tools-link: $cmln-link-format !default;
+$cmln-page-tools-link-new: map_get( $cmln-link-formats, "new" ) !default;
+
+// SearchBar
+$cmln-search-bar-collapse-point: cmln !default;
+$cmln-search-bar-btn-color: light !default; // @see $theme-colors
+
+// Navbar
+$cmln-navbar-bg-color: light !default; // @see $theme-colors
+$cmln-navbar-toggler-color: light !default; // @see $theme-colors
+
+$cmln-navbar-logo-height: 2 * $nav-link-padding-y + $font-size-base + $navbar-padding-y;
+
+// NavbarHorizontal
+$cmln-navbar-horizontal-collapse-point: cmln !default;
+
+// Icon defaults
+$cmln-icon-margin: map_get( $spacers, 2 ) !default;
+
+$cmln-icons: () !default;
+$cmln-icons: map-merge((
+	go-btn: fas fa-share,
+	search-btn: fas fa-search,
+	navbar-toggler: fas fa-bars,
+	navbar-tool-link: fas fa-asterisk,  // Default navbar page tool icon. Has to be specified before any specific item.
+	navbar-more-tools: fas fa-ellipsis-h,
+	navbar-usernotloggedin: fas fa-user,
+	navbar-userloggedin: fas fa-user,
+	n-mainpage-description: fas fa-home,
+	n-recentchanges: fas fa-backward,
+	n-randompage: fas fa-random,
+	n-help: fas fa-question,
+	p-lang-toggle: fas fa-language,
+	p-tb-toggle: fas fa-toolbox,
+	pt-anontalk: fas fa-comments,
+	pt-anoncontribs: fas fa-question,  // FIXME: Pers tools: Anon contribs
+	pt-createaccount: fas fa-user-plus,
+	pt-login: fas fa-sign-in-alt,
+	pt-userpage: fas fa-home,
+	pt-mytalk: fas fa-comments,
+	pt-preferences: fas fa-sliders-h,
+	pt-watchlist: far fa-eye,
+	pt-mycontris: fas fa-question,  // FIXME: Pers tools: My contribs
+	pt-logout: fas fa-sign-out-alt,
+	ca-nstab-main: far fa-file,
+	ca-nstab-mediawiki: far fa-cogs,
+	ca-nstab-special: fas fa-cogs,
+	ca-nstab-image: far fa-file-image,
+	ca-talk: far fa-comments,
+	ca-edit: far fa-edit,
+	ca-formedit: far fa-edit,
+	ca-viewsource: fas fa-code,
+	ca-history: fas fa-history,
+	ca-delete: fas fa-trash-alt,
+	ca-move: fas fa-location-arrow,
+	ca-protect: fas fa-lock,
+	ca-unprotect: fas fa-lock,
+	ca-watch: far fa-eye,
+	ca-unwatch: far fa-eye-slash,
+	ca-purge: fas fa-redo,
+	feedlink: fas fa-rss,
+	t-contributions: fas fa-user-edit,
+	t-log: fas fa-clipboard-list,
+	t-whatlinkshere: fas fa-sitemap,
+	t-recentchangeslinked: fas fa-backward,
+	t-upload: fas fa-upload,
+	t-specialpages: fas fa-cogs,
+	t-print: fas fa-print,
+	t-permalink: fas fa-link,
+	t-info: fas fa-info,  // Toolbox link: Page information
+	t-cite: fas fa-question,  // Toolbox link: Cite this page
+	t-smwbrowselink: fas fa-compass,  // Toolbox link: Browser properties
+), $cmln-icons);
+
+
+// MainContent
+$cmln-first-heading-underline-width: $hr-border-width !default;
+$cmln-first-heading-underline-color: $hr-border-color !default;
+$cmln-first-heading-margin-bottom: $hr-margin-y !default;
+
+$cmln-toc-title-font-size: $font-size-lg !default;
+$cmln-toc-group-margin-y: map_get($spacers, 1) !default;
+$cmln-toc-subgroup-margin-left: map_get($spacers, 2) !default;
+$cmln-toc-entry-number-padding-right: map_get($spacers, 2) !default;
+
+// Global textual link colors.
+$cmln-link-colors: () !default;
+$cmln-link-colors: map_merge((
+	new: theme-color("danger") none darken(theme-color("danger"), 15%) underline,
+	stub: $link-color none darken($link-color, 15%) underline,
+	extiw: $link-color none darken($link-color, 15%) underline,
+	external: $link-color none darken($link-color, 15%) underline
+), $cmln-link-colors);
+
+
+// list parameters
+$list-bullet-size: 0.5 * $font-size-base;
+$list-bullet-color: $gray-300;
+$list-level-indent: 3.5ex;
+
+/// ==> From Chameleon 1
+
+$thumbnail-caption-padding: 3px;
+
+// logo will be scaled down to this height to fit into the navbar
+// (this value should be less than the navbar-height)
+//$navbar-logo-height: .9 * $navbar-height;
+//
+$navbar-user-loggedin: theme-color("primary");
+$navbar-user-not-loggedin: $navbar-light-disabled-color; // FIXME: Fix color
+
+$navbar-newtalk-available: theme-color("primary"); // $brand-primary;
+$navbar-newtalk-not-available: $navbar-light-disabled-color; // FIXME: Fix color
+

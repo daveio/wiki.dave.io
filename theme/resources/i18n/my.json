@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sanlinnaing",
+			"Lionslayer",
+			"Dr Lotus Black"
+		]
+	},
+	"chameleon-loggedin": "သင်သည် $1 အဖြစ် အကောင့်သို့ မဝင်ထားပါ။",
+	"chameleon-notloggedin": "သင်သည် အကောင့်သို့ မဝင်ထားပါ။"
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"McSalama",
+			"01miki10",
+			"Nike",
+			"Pyscowicz"
+		]
+	},
+	"skinname-chameleon": "Kameleontti",
+	"chameleon-desc": "Kameleontti-teema",
+	"chameleon-loggedin": "Olet kirjautunut sisään nimellä $1.",
+	"chameleon-notloggedin": "Et ole kirjautunut sisään.",
+	"chameleon-newmessages": "Sinulla on uusia viestejä.",
+	"chameleon-nonewmessages": "Sinulla ei ole uusia viestejä."
+}

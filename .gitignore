@@ -1,0 +1,7 @@
+# -*- mode: gitignore; -*-
+theme/*~
+theme/\#*\#
+theme/.\#*
+theme/node_modules
+theme/vendor
+theme/npm-debug.log
