@@ -20,10 +20,6 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   if [[ -d /bitnami/mediawiki/skins ]]; then
     cp -r /theme /bitnami/mediawiki/skins/chameleon
   fi
-  (
-    cd /opt/bitnami/mediawiki
-    composer update
-  )
   # upstream
   . /mediawiki-init.sh
   nami_initialize apache php mysql-client mediawiki
