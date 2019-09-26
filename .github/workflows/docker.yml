@@ -16,7 +16,7 @@ jobs:
       run: echo ${GHPR_TOKEN} | docker login docker.pkg.github.com --username daveio --password-stdin
       env:
         GHPR_TOKEN: ${{ secrets.ghprToken }}
-    - name: Push to GHPR (short commit hash)
-      run: docker push docker.pkg.github.com/daveio/packages/wiki-dave-io:$(echo -n ${GITHUB_SHA} | cut -b -7)
     - name: Push to GHPR (latest)
       run: docker push docker.pkg.github.com/daveio/packages/wiki-dave-io:latest
+    - name: Push to GHPR (short commit hash)
+      run: docker push docker.pkg.github.com/daveio/packages/wiki-dave-io:$(echo -n ${GITHUB_SHA} | cut -b -7)

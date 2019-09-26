@@ -8,3 +8,4 @@ COPY theme /bitnami/mediawiki/skins/chameleon
 COPY container/composer.json /opt/bitnami/mediawiki/composer.json
 COPY container/composer.local.json /opt/bitnami/mediawiki/composer.local.json
 COPY container/app-entrypoint.sh /app-entrypoint.sh
+COPY container/additional-config.php /additional-config.php
