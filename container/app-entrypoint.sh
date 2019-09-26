@@ -17,7 +17,9 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   fi
   cp /composer.json /opt/bitnami/mediawiki/composer.json
   cp /composer.local.json /opt/bitnami/mediawiki/composer.local.json
-  cp -r /theme /bitnami/mediawiki/skins/chameleon
+  if [[ -d /bitnami/mediawiki/skins ]]; then
+    cp -r /theme /bitnami/mediawiki/skins/chameleon
+  fi
   (
     cd /opt/bitnami/mediawiki
     composer update
