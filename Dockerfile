@@ -4,8 +4,8 @@ RUN install_packages imagemagick \
     && apt-get update \
     && apt-get install -y apt-utils \
     && apt-get install -y unzip
-COPY theme /bitnami/mediawiki/skins/chameleon
-COPY container/composer.json /opt/bitnami/mediawiki/composer.json
-COPY container/composer.local.json /opt/bitnami/mediawiki/composer.local.json
+COPY theme /theme
+COPY container/composer.json /composer.json
+COPY container/composer.local.json /composer.local.json
 COPY container/app-entrypoint.sh /app-entrypoint.sh
 COPY container/additional-config.php /additional-config.php

@@ -14,6 +14,9 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   echo "# wiki.dave.io additional config" >> /bitnami/mediawiki/LocalSettings.php
   echo >> /bitnami/mediawiki/LocalSettings.php
   cat /additional-config.php >> /bitnami/mediawiki/LocalSettings.php
+  mv /composer.json /opt/bitnami/mediawiki/composer.json
+  mv /composer.local.json /opt/bitnami/mediawiki/composer.local.json
+  mv /theme /bitnami/mediawiki/skins/chameleon
   (
     cd /opt/bitnami/mediawiki
     composer update
