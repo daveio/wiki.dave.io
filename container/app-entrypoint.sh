@@ -6,17 +6,20 @@
 print_welcome_page
 
 if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
+  rm -rf /bitnami/mediawiki/skins/chameleon
+  rm -rf /opt/bitnami/mediawiki/composer.local.json
   . /mediawiki-init.sh
   nami_initialize apache php mysql-client mediawiki
   sed -i 's/^\$wgDefaultSkin.*$//g' /bitnami/mediawiki/LocalSettings.php
   sed -i 's/^wfLoadSkin.*$//g' /bitnami/mediawiki/LocalSettings.php
+  sed -i 's/^wgMetaNamespace.*$//g' /bitnami/mediawiki/LocalSettings.php
   echo >> /bitnami/mediawiki/LocalSettings.php
   echo "# wiki.dave.io additional config" >> /bitnami/mediawiki/LocalSettings.php
   echo >> /bitnami/mediawiki/LocalSettings.php
   cat /additional-config.php >> /bitnami/mediawiki/LocalSettings.php
-  mv /composer.json /opt/bitnami/mediawiki/composer.json
-  mv /composer.local.json /opt/bitnami/mediawiki/composer.local.json
-  mv /theme /bitnami/mediawiki/skins/chameleon
+  cp /composer.json /opt/bitnami/mediawiki/composer.json
+  cp /composer.local.json /opt/bitnami/mediawiki/composer.local.json
+  cp -r /theme /bitnami/mediawiki/skins/chameleon
   (
     cd /opt/bitnami/mediawiki
     composer update
