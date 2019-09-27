@@ -37,3 +37,6 @@ $wgMFRemovableClasses = [ 'base' => [ '.mw-lingo-tooltip' ] ];
 // Extension:Mermaid
 wfLoadExtension('Mermaid');
 $mermaidgDefaultTheme = 'forest';
+$wgGroupPermissions['*']['createaccount'] = false;
+$wgGroupPermissions['*']['edit'] = false;
+$wgGroupPermissions['sysop']['edit'] = true;
