@@ -47,6 +47,7 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
     cd /bitnami/mediawiki/extensions/MissedPages
     composer update
   )
+  php /opt/bitnami/mediawiki/maintenance/update.php --quick
   info "Starting mediawiki... "
 fi
 

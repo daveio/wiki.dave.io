@@ -3,7 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN install_packages imagemagick \
     && apt-get update \
     && apt-get install -y apt-utils \
-    && apt-get install -y unzip
+    && apt-get install -y unzip git
 COPY theme /theme
 COPY extensions /extensions
 COPY container/composer.json /composer.json

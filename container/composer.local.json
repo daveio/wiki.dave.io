@@ -2,6 +2,7 @@
   "require": {
     "mediawiki/chameleon-skin": "99.0.0",
     "mediawiki/mermaid": "~2.1",
-    "mediawiki/lingo": "~3.0"
+    "mediawiki/lingo": "~3.0",
+    "samwilson/missedpages": "dev-master"
   }
 }
