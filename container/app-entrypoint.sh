@@ -20,6 +20,10 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
     cd /opt/bitnami/mediawiki
     composer update
   )
+  (
+    cd /bitnami/mediawiki/extensions/MissedPages
+    composer update
+  )
   # upstream
   . /mediawiki-init.sh
   nami_initialize apache php mysql-client mediawiki
@@ -37,6 +41,10 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   cp -r /extensions/* /bitnami/mediawiki/extensions/
   (
     cd /opt/bitnami/mediawiki
+    composer update
+  )
+  (
+    cd /bitnami/mediawiki/extensions/MissedPages
     composer update
   )
   info "Starting mediawiki... "
