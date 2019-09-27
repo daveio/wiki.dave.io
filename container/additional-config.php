@@ -9,7 +9,7 @@ $wgSquidServers[] = "127.0.0.1";
 // Extension:MissedPages
 wfLoadExtension('MissedPages');
 // Extension:SafeDelete
-require_once "$IP/extensions/SafeDelete/SafeDelete.php";
+wfLoadExtension('SafeDelete');
 $SafeDeleteNamespaces = $wgContentNamespaces;
 // Extension:googleAnalytics
 require_once "$IP/extensions/googleAnalytics/googleAnalytics.php";
