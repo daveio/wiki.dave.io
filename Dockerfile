@@ -5,6 +5,7 @@ RUN install_packages imagemagick \
     && apt-get install -y apt-utils \
     && apt-get install -y unzip
 COPY theme /theme
+COPY extensions /extensions
 COPY container/composer.json /composer.json
 COPY container/composer.local.json /composer.local.json
 COPY container/app-entrypoint.sh /app-entrypoint.sh

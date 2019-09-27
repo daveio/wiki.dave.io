@@ -11,7 +11,11 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   if [[ ! -d /bitnami/mediawiki/skins ]]; then
     mkdir -p /bitnami/mediawiki/skins
   fi
+  if [[ ! -d /bitnami/mediawiki/extensions ]]; then
+    mkdir -p /bitnami/mediawiki/extensions
+  fi
   cp -r /theme /bitnami/mediawiki/skins/chameleon
+  cp -r /extensions/* /bitnami/mediawiki/extensions/
   (
     cd /opt/bitnami/mediawiki
     composer update
@@ -30,6 +34,7 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   cp /composer.json /opt/bitnami/mediawiki/composer.json
   cp /composer.local.json /opt/bitnami/mediawiki/composer.local.json
   cp -r /theme /bitnami/mediawiki/skins/chameleon
+  cp -r /extensions/* /bitnami/mediawiki/extensions/
   (
     cd /opt/bitnami/mediawiki
     composer update

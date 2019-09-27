@@ -5,3 +5,4 @@ theme/.\#*
 theme/node_modules
 theme/vendor
 theme/npm-debug.log
+**/.php_cs.cache
