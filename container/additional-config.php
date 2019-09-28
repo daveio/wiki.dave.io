@@ -43,4 +43,9 @@ $wgGroupPermissions['sysop']['edit'] = true;
 // Extension:Scribunto
 wfLoadExtension('Scribunto');
 $wgScribuntoDefaultEngine = 'luastandalone';
+// Extension:TemplateStyles
+wfLoadExtension('TemplateStyles');
+// Extension:CategoryTree
+wfLoadExtension('CategoryTree');
+$wgCategoryTreeSidebarRoot = 'wiki.dave.io';
 
