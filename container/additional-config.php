@@ -1,6 +1,6 @@
 $wgDefaultSkin = "chameleon";
 wfLoadSkin('chameleon');
-$egChameleonLayoutFile= __DIR__ . '/skins/chameleon/layouts/clean.xml';
+$egChameleonLayoutFile= __DIR__ . '/skins/chameleon/layouts/fixedhead.xml';
 $wgArticlePath='/wiki/$1';
 $wgMetaNamespace = "Self";
 $wgUseSquid = true;
