@@ -21,9 +21,9 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
     cd /opt/bitnami/mediawiki
     composer update --no-dev
   )
-  for i in /bitnami/mediawiki/extensions/*; do
+  for i in MissedPages TemplateStyles; do
     (
-      cd $i
+      cd /bitnami/mediawiki/extensions/$i
       composer update --no-dev
     )
   done
@@ -47,9 +47,9 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
     cd /opt/bitnami/mediawiki
     composer update --no-dev
   )
-  for i in /bitnami/mediawiki/extensions/*; do
+  for i in MissedPages TemplateStyles; do
     (
-      cd $i
+      cd /bitnami/mediawiki/extensions/$i
       composer update --no-dev
     )
   done
