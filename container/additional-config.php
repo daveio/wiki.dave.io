@@ -48,7 +48,3 @@ wfLoadExtension('TemplateStyles');
 // Extension:CategoryTree
 wfLoadExtension('CategoryTree');
 $wgCategoryTreeSidebarRoot = 'wiki.dave.io';
-// ImageMagick
-$wgUseImageMagick = true;
-$wgImageMagickConvertCommand = '/usr/bin/convert';
-
