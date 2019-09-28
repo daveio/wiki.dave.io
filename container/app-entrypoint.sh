@@ -19,12 +19,12 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   chmod a+x /bitnami/mediawiki/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
   (
     cd /opt/bitnami/mediawiki
-    composer update
+    composer update --no-dev
   )
   for i in /bitnami/mediawiki/extensions/*; do
     (
       cd $i
-      composer update
+      composer update --no-dev
     )
   done
   # upstream
@@ -45,12 +45,12 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   chmod a+x /bitnami/mediawiki/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
   (
     cd /opt/bitnami/mediawiki
-    composer update
+    composer update --no-dev
   )
   for i in /bitnami/mediawiki/extensions/*; do
     (
       cd $i
-      composer update
+      composer update --no-dev
     )
   done
   php /opt/bitnami/mediawiki/maintenance/update.php --quick
