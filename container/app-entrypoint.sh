@@ -55,6 +55,7 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   done
   php /opt/bitnami/mediawiki/maintenance/update.php --quick
   php /opt/bitnami/mediawiki/maintenance/rebuildall.php
+  chown -R daemon.daemon /bitnami/mediawiki
   info "Starting mediawiki... "
 fi
 
