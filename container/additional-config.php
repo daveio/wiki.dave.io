@@ -40,3 +40,7 @@ $mermaidgDefaultTheme = 'forest';
 $wgGroupPermissions['*']['createaccount'] = false;
 $wgGroupPermissions['*']['edit'] = false;
 $wgGroupPermissions['sysop']['edit'] = true;
+// Extension:Scribunto
+wfLoadExtension('Scribunto');
+$wgScribuntoDefaultEngine = 'luastandalone';
+

@@ -16,12 +16,9 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   fi
   cp -r /theme /bitnami/mediawiki/skins/chameleon
   cp -r /extensions/* /bitnami/mediawiki/extensions/
+  chmod a+x /bitnami/mediawiki/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
   (
     cd /opt/bitnami/mediawiki
-    composer update
-  )
-  (
-    cd /bitnami/mediawiki/extensions/MissedPages
     composer update
   )
   # upstream
@@ -39,15 +36,13 @@ if [[ "$1" == "nami" && "$2" == "start" ]] || [[ "$1" == "/init.sh" ]]; then
   cp /composer.local.json /opt/bitnami/mediawiki/composer.local.json
   cp -r /theme /bitnami/mediawiki/skins/chameleon
   cp -r /extensions/* /bitnami/mediawiki/extensions/
+  chmod a+x /bitnami/mediawiki/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
   (
     cd /opt/bitnami/mediawiki
     composer update
   )
-  (
-    cd /bitnami/mediawiki/extensions/MissedPages
-    composer update
-  )
   php /opt/bitnami/mediawiki/maintenance/update.php --quick
+  php /opt/bitnami/mediawiki/maintenance/rebuildall.php
   info "Starting mediawiki... "
 fi
 
