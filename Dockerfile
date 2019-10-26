@@ -1,4 +1,4 @@
-FROM bitnami/mediawiki:1.33.0-debian-9-r84
+FROM bitnami/mediawiki:1.33.1-debian-9-r13
 ENV DEBIAN_FRONTEND=noninteractive
 RUN install_packages imagemagick \
     && apt-get update \
