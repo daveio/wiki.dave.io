@@ -55,7 +55,6 @@ $wgDBtype = "mysql";
 $wgDBserver = "db";
 $wgDBname = "my_wiki";
 $wgDBuser = "wikiuser";
-$wgDBpassword = "example";
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -93,8 +92,6 @@ $wgShellLocale = "C.UTF-8";
 
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "en-gb";
-
-$wgSecretKey = "8cd7d6385759f1c40a681ca45c42a54d81c6b6094ca30214dda3fe486526ea71";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
@@ -173,5 +170,9 @@ $wgVisualEditorAvailableNamespaces = [
 ];
 $wgVirtualRestConfig['modules']['parsoid'] = array(
     'url' => 'http://localhost:8000',
-    'domain' => 'localhost'
+    'domain' => 'localhost' //DevSkim: reviewed DS162092 on 2019-11-29 by Dave Williams <dave@dave.io>
 );
+
+require_once('./Secrets.php');
+
+?>

@@ -1,2 +1,122 @@
-FROM mediawiki:1.33.1
+# FROM mediawiki:1.33.1
+FROM abiosoft/caddy:builder as caddybuilder
+RUN go get -v github.com/abiosoft/parent
+RUN GO111MODULE="on" VERSION="1.0.3" \
+  PLUGINS="git,cors,realip,expires,cache,cloudflare" ENABLE_TELEMETRY="true" \
+  /bin/sh /usr/bin/builder.sh
+
+FROM alpine:latest as mediawikibuilder
+RUN mkdir /fetch
+WORKDIR /fetch
+RUN apk add --no-cache wget \
+  && wget \
+  https://releases.wikimedia.org/mediawiki/1.33/mediawiki-1.33.1.tar.gz \
+  && tar xf mediawiki-1.33.1.tar.gz
+
+# -> Start build
+FROM alpine:latest
+LABEL maintainer "Dave Williams <dave@dave.io>"
+COPY --from=caddybuilder /go/bin/parent /bin/parent
+COPY --from=caddybuilder /install/caddy /usr/bin/caddy
+COPY Caddyfile /etc/Caddyfile
+COPY --from=mediawikibuilder /fetch/mediawiki-1.33.1 /srv
+COPY pi.php /srv
+RUN mkdir /conf \
+  && mkdir /sec \
+  && mkdir -p /data/images
+VOLUME ["/conf", "/sec", "/data/images"]
+# -> Install supporting packages
+RUN apk add --no-cache \
+  bash \
+  ca-certificates \
+  curl \
+  diffutils \
+  git \
+  imagemagick \
+  lua \
+  luarocks \
+  mailcap \
+  nodejs-current \
+  npm \
+  openssh-client \
+  php7-fpm \
+  redis \
+  librsvg \
+  tar \
+  texlive-full \
+  tzdata \
+  yarn
+# -> Install PHP and extensions
+RUN apk add --no-cache \
+  php7-bcmath \
+  php7-ctype \
+  php7-curl \
+  php7-dom \
+  php7-exif \
+  php7-fileinfo \
+  php7-gd \
+  php7-iconv \
+  php7-intl \
+  php7-json \
+  php7-mbstring \
+  php7-mysqli \
+  php7-opcache \
+  php7-openssl \
+  php7-pcntl \
+  php7-pdo \
+  php7-pdo_mysql \
+  php7-pdo_pgsql \
+  php7-pdo_sqlite \
+  php7-pecl-apcu \
+  php7-pecl-imagick \
+  php7-pecl-redis \
+  php7-pgsql \
+  php7-phar \
+  php7-session \
+  php7-simplexml \
+  php7-sqlite3 \
+  php7-tokenizer \
+  php7-xml \
+  php7-xmlreader \
+  php7-xmlwriter \
+  php7-zip
+# -> Do PHP setup
+RUN ln -sf /usr/bin/php7 /usr/bin/php
+RUN ln -sf /usr/bin/php-fpm7 /usr/bin/php-fpm
+RUN addgroup -g 1000 www-user && \
+  adduser -D -H -u 1000 -G www-user www-user && \
+  sed -i "s|^user = .*|user = www-user|g" /etc/php7/php-fpm.d/www.conf && \
+  sed -i "s|^group = .*|group = www-user|g" /etc/php7/php-fpm.d/www.conf
+RUN echo "clear_env = no" >> /etc/php7/php-fpm.conf
+# -> Install Composer
+RUN curl --silent --show-error --fail --location --header \
+  "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" \
+  "https://getcomposer.org/installer" \
+  | php -- --install-dir=/usr/bin --filename=composer
+# -> Patch MediaWiki SQL for GCP Cloud SQL (no MyISAM)
+RUN sed -i "s/ENGINE=MyISAM/ENGINE=InnoDB/g" \
+  /srv/maintenance/tables.sql \
+  /srv/maintenance/archives/patch-searchindex.sql
+# -> Symlink mounted ConfigMap
+RUN ln -sf /conf/LocalSettings.php /srv/LocalSettings.php
+# -> Symlink mounted Secret
+RUN ln -sf /sec/Secrets.php /srv/Secrets.php
+# -> Symlink writable paths to mounted PVC
+RUN rm -rf /srv/images
+RUN ln -sf /data/images /srv/images
+# -> install additional plugins
+COPY plugins/VisualEditor-REL1_33-8c9c37e.tar.gz /tmp/visualeditor.tgz
+WORKDIR /srv/extensions
+RUN tar xzvf /tmp/visualeditor.tgz \
+  && rm -rf /tmp/visualeditor.tgz
+# -> chmod & chown PVC mount paths
+RUN chown -R 1000:1000 /srv \
+  && chown -R 1000:1000 /data \
+  && chown -R 1000:1000 /conf \
+  && chown -R 1000:1000 /sec
+# -> Start Caddy (Caddy starts PHP-FPM)
+WORKDIR /srv
+ENTRYPOINT ["/bin/parent", "caddy"]
+CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=true"]
+# -> Expose plaintext HTTP on port 80
 EXPOSE 80/tcp

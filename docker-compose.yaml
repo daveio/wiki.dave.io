@@ -1,11 +1,7 @@
-# MediaWiki with MariaDB
-#
-# Access via "http://localhost:8080"
-#   (or "http://$(docker-machine ip):8080" if using docker-machine)
 version: "3"
 services:
   web:
-    image: wiki-dave-io
+    image: wiki
     restart: always
     ports:
       - 8080:80
